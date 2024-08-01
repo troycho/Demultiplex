@@ -7,6 +7,7 @@
 *.bam
 *.gtf
 *.gff
+*_dist.txt
 # allow fastq files in test input and output folders
 !TEST-input_FASTQ/*
 !TEST-output_FASTQ/*
@@ -115,3 +116,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# SLURM
+*.out
