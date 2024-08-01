@@ -54,7 +54,7 @@ def meetsCutoff(qscore:str, cutoff: int) -> bool:
 		return False
 	return True
 
-Input: "')(+**&$"
+Input: "')(+**&$", 30
 Expected output: False
 ```
 ```
