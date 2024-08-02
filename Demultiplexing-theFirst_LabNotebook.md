@@ -246,7 +246,7 @@ Signals delivered: 0
 Page size (bytes): 4096
 Exit status: 0
 ```
-![[DemultiplexPart1Jobs.png]]  
+![DemultiplexPart1Jobs.png](./DemultiplexPart1Jobs.png)  
 
 7/29/24:  
 **Counting number of barcodes with "N" base calls in R2 and R3 files:**
