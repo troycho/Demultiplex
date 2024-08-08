@@ -138,6 +138,24 @@ with gzip.open(args.Read1, "rt") as fh1, gzip.open(args.Read2, "rt") as fh2, gzi
 for key in fh_dict:
     fh_dict[key].close()
 
-print(f"Matched pairs: {matched_dict}")
-print(f"Hopped pairs: {hop_dict}")
-print(f"Unknown ct: {unknown}")
+#Write out numbers for user report to output file
+total: int=sum(matched_dict.values()) + sum(hop_dict.values()) + unknown #total number of reads outputted to all the files
+matched_total: int=sum(matched_dict.values()) #total number of reads with matched barcodes
+hop_total: int=sum(hop_dict.values()) #total number of reads with hopped barcodes
+with open("user-report.txt", "w") as wf:
+    wf.write(f"Overall numbers:\n")
+    wf.write(f"|Category|\t|Number of reads|\t|% of total reads|\n")
+    wf.write(f"Matched\t{matched_total}\t{matched_total/total}\n")
+    wf.write(f"Hopped\t{hop_total}\t{hop_total/total}\n")
+    wf.write(f"Unknown\t{unknown}\t{unknown/total}\n")
+    wf.write("\n")
+    wf.write(f"Matched indices breakdown:\n")
+    wf.write(f"|Index Pair|\t|Number of reads|\t|% of matched reads|\n")
+    for key in matched_dict:
+        wf.write(f"{key}\t{matched_dict[key]}\t{matched_dict[key]/matched_total}\n")
+    wf.write("\n")
+    wf.write(f"Hopped indices breakdown:\n")
+    wf.write(f"|Index Pair|\t|Number of reads|\t|% of hopped reads|\n")
+    for key in hop_dict:
+        wf.write(f"{key}\t{hop_dict[key]}\t{hop_dict[key]/hop_total}\n")
+
